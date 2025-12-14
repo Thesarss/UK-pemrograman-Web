@@ -21,3 +21,12 @@ $routes->group('admin', ['filter' => 'auth:admin'], function($routes) {
     $routes->resource('prodi', ['controller' => 'AdminProdi']);
     $routes->resource('mahasiswa', ['controller' => 'AdminMahasiswa']);
 });
+
+$routes->group('mahasiswa', ['filter' => 'role:mahasiswa'], function($routes) {
+    $routes->get('/', 'Mahasiswa::index');
+    $routes->get('periode/(:num)', 'Mahasiswa::periode/$1');
+    $routes->post('submit/(:num)', 'Mahasiswa::submit/$1');
+
+    $routes->get('notifications', 'Mahasiswa::notifications');
+    $routes->get('notifications/read/(:num)', 'Mahasiswa::readNotif/$1');
+});
