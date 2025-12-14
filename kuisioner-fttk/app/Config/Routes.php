@@ -21,3 +21,10 @@ $routes->group('admin', ['filter' => 'auth:admin'], function($routes) {
     $routes->resource('prodi', ['controller' => 'AdminProdi']);
     $routes->resource('mahasiswa', ['controller' => 'AdminMahasiswa']);
 });
+//routes analytic
+$routes->group('report', ['filter' => 'auth'], function($routes) {
+    $routes->get('kaprodi/(:num)', 'Report::kaprodi/$1');
+    $routes->get('pimpinan/(:num)', 'Report::pimpinan/$1');
+    $routes->get('exportExcel/(:num)', 'Report::exportExcel/$1');
+    $routes->get('exportPdf/(:num)', 'Report::exportPdf/$1');
+});
